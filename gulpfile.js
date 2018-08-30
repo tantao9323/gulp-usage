@@ -7,7 +7,8 @@ var gulp = require('gulp'),
     concatCSS = require('gulp-concat-css'),
     imagemin = require('gulp-imagemin'),
     htmlmin = require('gulp-htmlmin'),
-    htmlreplace = require('gulp-html-replace');
+    htmlreplace = require('gulp-html-replace'),
+    rev = require('gulp-rev-append');
 
 gulp.task('clean', function () {
     del(['dest/*']);
@@ -42,8 +43,8 @@ gulp.task('imagemin', function () {
 gulp.task('htmlmin', function () {
     gulp.src(['index.html'])
         .pipe(htmlreplace({
-            'css': 'css/main.css',
-            'js': 'js/main.js'
+            'css': 'css/main.css?rev=@@hash',
+            'js': 'js/main.js?rev=@@hash'
         }))
         .pipe(htmlmin({
             collapseWhitespace: true,
@@ -53,6 +54,7 @@ gulp.task('htmlmin', function () {
             minifyCSS: true,
             minifyJS: true,
         }))
+        .pipe(rev())
         .pipe(gulp.dest('dest/'))
 })
 
