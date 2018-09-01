@@ -20,8 +20,8 @@ gulp.task('copy', function (cb) {
 
 gulp.task('uglifyjs', function () {
     gulp.src(['js/*.js'])
-        .pipe(uglify())
         .pipe(concat('main.js'))
+        .pipe(uglify())
         .pipe(gulp.dest('dest/js/'));
 })
 

@@ -1,2 +1,1 @@
-function print(n){console.log(n)}
-function toast(t){alert(t)}
+function print(n){console.log(n)}function toast(n){alert(n)}
